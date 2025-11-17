@@ -1,0 +1,21 @@
+body {
+  background-color: gainsboro;
+  /* Use a system font, if none are available use an available sans-sarif */
+  font-family: system-ui, sans-serif;
+  margin-left: 50px;
+}
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 625px;
+}
+
+.emoji {
+  width: 20%;
+  aspect-ratio: 1/1;
+  border: 3px solid black;
+  font-size: 64px;
+  text-align: center;
+  /*background-color: #add8e6;*/
+}

@@ -23,4 +23,107 @@
 
 //10. Define how the player loses the game. It could be after a certain amount of time or a certain number of wrong guesses.
 
-//11. Define a theme for you game, such as Nature/hiking related. The pairs could be represented by cards, symbols, emojis, pictures, etc.
+//11. Define a theme for your game, such as Nature/hiking related. The pairs could be represented by cards, symbols, emojis, pictures, etc.
+
+
+/*-------------------------------- Constants --------------------------------*/
+const pairs = ['🐵', '🐵', '🐶', '🐶', '🐯', '🐯', '🦊', '🦊', '🐰', '🐰', '🐻', '🐻'];
+
+/*---------------------------- Variables (state) ----------------------------*/
+let board;  // For tracking the state of the game
+let turn;  // For tracking the turns
+let numTries;  // For tracking the number of tries
+let numPairs  // For tracking the number of matched pairs
+let winner;  // For checking if the player wins
+
+/*------------------------ Cached Element References ------------------------*/
+const emojiEls = document.querySelectorAll('.emoji');
+const messageEl = document.querySelector('#message');
+const boardEl = document.querySelector('.board');
+const resetBtnEl = document.querySelector('#reset');
+
+/*-------------------------------- Functions --------------------------------*/
+function init() {
+
+    board = ['', '', '', '', '', '', '', '', '', ''];  // The emojis will be all hidden from start
+    shuffleGame();
+    turn = false;
+    numTries = 0;
+    numPairs = 0;
+    winner = false;
+    render();
+};
+
+init();
+
+// Create a function to shuffle the game
+function shuffleGame() {
+    for (let i = 0; i < pairs.length; i++) {
+        const randomIdx = Math.floor(Math.random() * pairs.length);
+
+    // In order to shuffle the game, use a temp variable to swap the emojis
+    let tempVar = pairs[i];
+    pairs[i] = pairs[randomIdx];
+    pairs[randomIdx] = tempVar;    
+    }    
+};
+
+// Create a function to render the updated board state and message
+function render () {
+    updateBoard();
+    updateMessage();
+};
+
+// Create a function to update the board
+function updateBoard() {
+
+    // Continue
+
+};
+
+// Create a function to update the message based on the progress of the game
+function updateMessage() {
+
+    // Continue
+
+};
+
+// Create a function to handle the clicks
+function handleClick(event) {
+    // Check if the clicked element is an emoji, exit otherwise
+    if (!event.target.classList.contains('emoji')) {
+        return;
+    }
+
+    // Continue
+
+    placeEl();
+
+    checkForWinner();
+
+    trackTurns();
+
+    render();
+};
+
+// Create a function to check if the player wins or not
+function checkForWinner() {
+
+    // Continue
+};
+
+// Create a function to track turns
+function trackTurns() {
+    if(winner) {
+        // If the player wins, return out of the function
+        return;
+    } else {
+
+        // Continue
+    }
+};
+
+
+/*----------------------------- Event Listeners -----------------------------*/
+boardEl.addEventListener('click', handleClick);
+resetBtnEl.addEventListener('click', init);
