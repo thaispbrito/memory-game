@@ -1,4 +1,4 @@
-// PSEUDOCODE (Initial Project Planning) - Concentration (Memory Game)
+// PSEUDOCODE (Project Planning) - Concentration (Memory Game)
 
 //1. First, define the variables that are required for tracking the state of the game, 
 // such as a variable that tracks the number of tries and another one that tracks the numbers of pairs, among others.
@@ -27,10 +27,10 @@
 
 
 /*-------------------------------- Constants --------------------------------*/
-const pairs = ['🐵', '🐵', '🐶', '🐶', '🐯', '🐯', '🦊', '🦊', '🐰', '🐰', '🐻', '🐻'];
+const pairs = ['🌋', '🌋', '🏞️', '🏞️', '⛰️', '⛰️', '🥾', '🥾', '🍂', '🍂', '🐻', '🐻'];
 
 /*---------------------------- Variables (state) ----------------------------*/
-let board;  
+let boardItems;  
 let numTries;  
 let numPairs;
 let matchPair;  
@@ -50,7 +50,7 @@ const resetBtnElement = document.querySelector('#reset');
 /*-------------------------------- Functions --------------------------------*/
 function init() {
 
-    board = ['', '', '', '', '', '', '', '', '', '', '', ''];  // The emojis will be all hidden from start
+    boardItems = ['', '', '', '', '', '', '', '', '', '', '', ''];  // The emojis will be all hidden from start
     shuffleGame();
     numTries = 0;
     numPairs = 0;
@@ -59,9 +59,12 @@ function init() {
     gameOver = false;
     playerChoice1 = null;
     playerChoice2 = null;
+    prevPlayerChoice1 = null;
+    prevPlayerChoice2 = null;
     render();
 };
 
+// Call the init() function to initialize the game and render the initial state
 init();
 
 // Create a function to shuffle the game
@@ -83,9 +86,8 @@ function render () {
 };
 
 // Create a function to update the board
-function updateBoard() {
-    
-    board.forEach((boardElement, idx) => {
+function updateBoard() {   
+    boardItems.forEach((boardElement, idx) => {
         emojiElements[idx].textContent = boardElement;
     })
 };
@@ -108,35 +110,36 @@ function updateMessage() {
     }
 };
 
-
 // Create a function to handle the clicks
 function handleClick(event) {
 
-    // let test = event.target
-    // test.innerText = 'clicked!'
-    // console.log(test);
+    // Exit the function if game is over
+    if(numTries === 10) {
+        return;
+    }
 
     // Check if the clicked element is an emoji, exit otherwise
     if (!event.target.classList.contains('emoji')) {
         return;
     }
     
+    // Set the emoji index
     const emojiIdx = parseInt(event.target.id);
 
-    // Make sure the player are not able to click the emoji twice
+    // Make sure the player is not able to click the same emoji twice for the same turn
     if (emojiIdx === playerChoice1 || emojiIdx === playerChoice2) {
         return;
     }
 
-    // Deal with previous mismatch, if the case
+    // Deal with previous mismatch, if that's the case
     if (prevPlayerChoice1 !== null && prevPlayerChoice2 !== null) {
-        board[prevPlayerChoice1] = '';
-        board[prevPlayerChoice2] = '';
+        boardItems[prevPlayerChoice1] = '';
+        boardItems[prevPlayerChoice2] = '';
         prevPlayerChoice1 = null;
         prevPlayerChoice2 = null;
     }
 
-    // Current choice
+    // Deal with the current choice
     if (playerChoice1 === null) {
         playerChoice1 = emojiIdx;
     } else if (playerChoice2 === null) {
@@ -146,7 +149,7 @@ function handleClick(event) {
     // Reveal the clicked emoji
     showElement(emojiIdx);
 
-    // Check the state of the game, such as the existence of matching pairs
+    // Check the state of the game
     if (playerChoice1 !== null && playerChoice2 !== null) {
         checkGameState(); 
     }
@@ -158,11 +161,11 @@ function handleClick(event) {
 // Create a function to show the element 
 function showElement(idx) {
     
-    board[idx] = pairs[idx]; 
+    boardItems[idx] = pairs[idx]; 
     
 };
 
-// Create a function to check the choices
+// Create a function to check the choices, and if the player wins or not
 function checkGameState() {
     
     // Check if there is a match, if so do not hide matched emojis
@@ -171,6 +174,7 @@ function checkGameState() {
         // There is a match
         matchPair = true;
 
+        // Increase the number of pairs
         numPairs += 1;
 
         prevPlayerChoice1 = null;
@@ -182,6 +186,7 @@ function checkGameState() {
         // There is no match
         matchPair = false;
 
+        // Increase the number of tries
         numTries += 1;
 
         // If the cards don't match, hide them during next click
