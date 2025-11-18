@@ -30,27 +30,35 @@
 const pairs = ['🐵', '🐵', '🐶', '🐶', '🐯', '🐯', '🦊', '🦊', '🐰', '🐰', '🐻', '🐻'];
 
 /*---------------------------- Variables (state) ----------------------------*/
-let board;  // For tracking the state of the game
-let turn;  // For tracking the turns
-let numTries;  // For tracking the number of tries
-let numPairs  // For tracking the number of matched pairs
-let winner;  // For checking if the player wins
+let board;  
+let numTries;  
+let numPairs;
+let matchPair;  
+let winner;
+let gameOver;  
+let playerChoice1;
+let playerChoice2;
+let prevPlayerChoice1;
+let prevPlayerChoice2;
 
 /*------------------------ Cached Element References ------------------------*/
-const emojiEls = document.querySelectorAll('.emoji');
-const messageEl = document.querySelector('#message');
-const boardEl = document.querySelector('.board');
-const resetBtnEl = document.querySelector('#reset');
+const emojiElements = document.querySelectorAll('.emoji');
+const messageElement = document.querySelector('#message');
+const boardElement = document.querySelector('.board');
+const resetBtnElement = document.querySelector('#reset');
 
 /*-------------------------------- Functions --------------------------------*/
 function init() {
 
-    board = ['', '', '', '', '', '', '', '', '', ''];  // The emojis will be all hidden from start
+    board = ['', '', '', '', '', '', '', '', '', '', '', ''];  // The emojis will be all hidden from start
     shuffleGame();
-    turn = false;
     numTries = 0;
     numPairs = 0;
+    matchPair = false;
     winner = false;
+    gameOver = false;
+    playerChoice1 = null;
+    playerChoice2 = null;
     render();
 };
 
@@ -76,54 +84,125 @@ function render () {
 
 // Create a function to update the board
 function updateBoard() {
-
-    // Continue
-
+    
+    board.forEach((boardElement, idx) => {
+        emojiElements[idx].textContent = boardElement;
+    })
 };
 
 // Create a function to update the message based on the progress of the game
 function updateMessage() {
 
-    // Continue
-
+    if(!winner && !gameOver && matchPair) {   
+        // Update the message with the new number of pairs
+        messageElement.textContent = `Tries: ${numTries} | Pairs:${numPairs}`
+    } else if(!winner && !gameOver && !matchPair) {
+        // Update the message with the new number of tries
+        messageElement.textContent = `Tries: ${numTries} | Pairs:${numPairs}`
+    } else if(winner) {
+        // Update the message congratulating the player for winning the game
+        messageElement.textContent = `Congratulations! You just won the game!`
+    } else {
+        // Update the message letting the player know that the game is over
+        messageElement.textContent = `Gave Over!`
+    }
 };
+
 
 // Create a function to handle the clicks
 function handleClick(event) {
+
+    // let test = event.target
+    // test.innerText = 'clicked!'
+    // console.log(test);
+
     // Check if the clicked element is an emoji, exit otherwise
     if (!event.target.classList.contains('emoji')) {
         return;
     }
+    
+    const emojiIdx = parseInt(event.target.id);
 
-    // Continue
+    // Make sure the player are not able to click the emoji twice
+    if (emojiIdx === playerChoice1 || emojiIdx === playerChoice2) {
+        return;
+    }
 
-    placeEl();
+    // Deal with previous mismatch, if the case
+    if (prevPlayerChoice1 !== null && prevPlayerChoice2 !== null) {
+        board[prevPlayerChoice1] = '';
+        board[prevPlayerChoice2] = '';
+        prevPlayerChoice1 = null;
+        prevPlayerChoice2 = null;
+    }
 
-    checkForWinner();
+    // Current choice
+    if (playerChoice1 === null) {
+        playerChoice1 = emojiIdx;
+    } else if (playerChoice2 === null) {
+        playerChoice2 = emojiIdx;
+    }
+ 
+    // Reveal the clicked emoji
+    showElement(emojiIdx);
 
-    trackTurns();
+    // Check the state of the game, such as the existence of matching pairs
+    if (playerChoice1 !== null && playerChoice2 !== null) {
+        checkGameState(); 
+    }
 
     render();
 };
 
-// Create a function to check if the player wins or not
-function checkForWinner() {
 
-    // Continue
+// Create a function to show the element 
+function showElement(idx) {
+    
+    board[idx] = pairs[idx]; 
+    
 };
 
-// Create a function to track turns
-function trackTurns() {
-    if(winner) {
-        // If the player wins, return out of the function
-        return;
+// Create a function to check the choices
+function checkGameState() {
+    
+    // Check if there is a match, if so do not hide matched emojis
+    if (pairs[playerChoice1] === pairs[playerChoice2]) {
+        
+        // There is a match
+        matchPair = true;
+
+        numPairs += 1;
+
+        prevPlayerChoice1 = null;
+        prevPlayerChoice2 = null;
+        
+    // Hide emojis otherwise    
     } else {
 
-        // Continue
+        // There is no match
+        matchPair = false;
+
+        numTries += 1;
+
+        // If the cards don't match, hide them during next click
+        prevPlayerChoice1 = playerChoice1;
+        prevPlayerChoice2 = playerChoice2;
     }
+
+    // Reset current choices
+    playerChoice1 = null;
+    playerChoice2 = null;
+
+
+    // Check if the player wins or not
+    if (numPairs === 6) {
+        winner = true;
+    } else if (numTries === 10) {
+        gameOver = true;
+    }
+
 };
 
-
 /*----------------------------- Event Listeners -----------------------------*/
-boardEl.addEventListener('click', handleClick);
-resetBtnEl.addEventListener('click', init);
+boardElement.addEventListener('click', handleClick);
+resetBtnElement.addEventListener('click', init);
