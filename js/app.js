@@ -42,6 +42,7 @@ let prevPlayerChoice1;
 let prevPlayerChoice2;
 let countDown;
 let intervalTime;
+let clickedStart;
 
 /*------------------------ Cached Element References ------------------------*/
 const emojiElements = document.querySelectorAll('.emoji');
@@ -102,14 +103,14 @@ function updateMessage() {
 
     if(!winner && !gameOver && matchPair) {   
         // Update the message with the new number of pairs
-        messageElement.textContent = `Tries: ${numTries} | Pairs:${numPairs}`
+        messageElement.textContent = `Pairs:${numPairs}`
     } else if(!winner && !gameOver && !matchPair) {
         // Update the message with the new number of tries
-        messageElement.textContent = `Tries: ${numTries} | Pairs:${numPairs}`
+        messageElement.textContent = `Pairs:${numPairs}`
     } else if(winner) {
         // Update the message congratulating the player for winning the game
         messageElement.textContent = `Congratulations! You just won the game!`
-    } else {
+    } else if (gameOver) {
         // Update the message letting the player know that the game is over
         messageElement.textContent = `Gave Over!`
     }
@@ -118,8 +119,13 @@ function updateMessage() {
 // Create a function to handle the clicks
 function handleClick(event) {
 
-    // Exit the function if game is over
-    if(numTries === 10) {
+    // Exit the function if the start button has not been clicked yet
+    if (!clickedStart) {
+        return;
+    }
+    
+    // Exit the function if the game is over
+    if (gameOver) {
         return;
     }
 
@@ -193,7 +199,7 @@ function checkGameState() {
         matchPair = false;
 
         // Increase the number of tries
-        numTries += 1;
+        //numTries += 1;
 
         // If the cards don't match, hide them during next click
         prevPlayerChoice1 = playerChoice1;
@@ -205,12 +211,10 @@ function checkGameState() {
     playerChoice2 = null;
 
 
-    // Check if the player wins or not
+    // Check if the player wins
     if (numPairs === 6) {
         winner = true;
-    } else if (numTries === 10) {
-        gameOver = true;
-    }
+    } 
 
 };
 
@@ -221,6 +225,10 @@ function timerDetails() {
 
     if (countDown <= 0) {
 
+        gameOver = true;
+
+        render();
+
         resetTimer();
     }
     countDown -= 1;
@@ -228,9 +236,16 @@ function timerDetails() {
 
 // Create a function to set up a countdown for the game
 function setTimer() {
-    //startElement.disabled = true;
-    intervalTime ??= setInterval(timerDetails, 1000);
 
+    // If the game is over, click the `Reset` button first to
+    // be able to trigger the countdown again by clicking the `Start` button
+    if (!gameOver) {
+        intervalTime ??= setInterval(timerDetails, 1000);
+
+        // Start the game once the button `Start` has been clicked
+        clickedStart = true;
+    } 
+       
 }
 
 // Reset timer
@@ -243,6 +258,8 @@ function resetTimer() {
     countDown = 60;
 
     intervalTime = null;  // Set it to null to be able to create a new interval
+
+    clickedStart = false;
 }
 
 /*----------------------------- Event Listeners -----------------------------*/
