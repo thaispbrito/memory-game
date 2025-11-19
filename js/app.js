@@ -40,12 +40,16 @@ let playerChoice1;
 let playerChoice2;
 let prevPlayerChoice1;
 let prevPlayerChoice2;
+let countDown;
+let intervalTime;
 
 /*------------------------ Cached Element References ------------------------*/
 const emojiElements = document.querySelectorAll('.emoji');
 const messageElement = document.querySelector('#message');
 const boardElement = document.querySelector('.board');
 const resetBtnElement = document.querySelector('#reset');
+const startElement = document.querySelector('#start');
+const timerElement = document.querySelector('.timer-display')
 
 /*-------------------------------- Functions --------------------------------*/
 function init() {
@@ -61,6 +65,7 @@ function init() {
     playerChoice2 = null;
     prevPlayerChoice1 = null;
     prevPlayerChoice2 = null;
+    resetTimer();
     render();
 };
 
@@ -157,7 +162,6 @@ function handleClick(event) {
     render();
 };
 
-
 // Create a function to show the element 
 function showElement(idx) {
     
@@ -165,7 +169,7 @@ function showElement(idx) {
     
 };
 
-// Create a function to check the choices, and if the player wins or not
+// Create a function to check the choices and if the player wins or not
 function checkGameState() {
     
     // Check if there is a match, if so do not hide matched emojis
@@ -177,6 +181,8 @@ function checkGameState() {
         // Increase the number of pairs
         numPairs += 1;
 
+        // In this case, there's no need to hide the emojis again during the next click,
+        // so, reset the variables below
         prevPlayerChoice1 = null;
         prevPlayerChoice2 = null;
         
@@ -208,6 +214,38 @@ function checkGameState() {
 
 };
 
+// Create a function to set up timer details
+function timerDetails() {
+
+    timerElement.textContent = countDown + " secs ";
+
+    if (countDown <= 0) {
+
+        resetTimer();
+    }
+    countDown -= 1;
+}
+
+// Create a function to set up a countdown for the game
+function setTimer() {
+    //startElement.disabled = true;
+    intervalTime ??= setInterval(timerDetails, 1000);
+
+}
+
+// Reset timer
+function resetTimer() {
+
+    clearInterval(intervalTime);  // Stops the timer
+
+    timerElement.textContent = "";
+
+    countDown = 60;
+
+    intervalTime = null;  // Set it to null to be able to create a new interval
+}
+
 /*----------------------------- Event Listeners -----------------------------*/
 boardElement.addEventListener('click', handleClick);
 resetBtnElement.addEventListener('click', init);
+startElement.addEventListener('click', setTimer);
