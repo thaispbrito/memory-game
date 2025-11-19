@@ -148,6 +148,7 @@ function handleClick(event) {
         boardItems[prevPlayerChoice2] = '';
         prevPlayerChoice1 = null;
         prevPlayerChoice2 = null;
+        // playMismatchSound();
     }
 
     // Deal with the current choice
@@ -198,8 +199,8 @@ function checkGameState() {
         // There is no match
         matchPair = false;
 
-        // Increase the number of tries
-        //numTries += 1;
+        // Play the mismatch right away
+        playMismatchAudio();
 
         // If the cards don't match, hide them during next click
         prevPlayerChoice1 = playerChoice1;
@@ -268,6 +269,18 @@ function resetTimer() {
 
     clickedStart = false;
 }
+
+// Create a variable to store the mismatch audio
+const mismatchAudio = new Audio('/sound/mismatch_sound.mp3');
+
+// Create a function to play the mismatch audio
+function playMismatchAudio() {
+
+    // Reset the sound if already played
+    mismatchAudio.currentTime = 0;
+    mismatchAudio.play();
+}
+
 
 /*----------------------------- Event Listeners -----------------------------*/
 boardElement.addEventListener('click', handleClick);
