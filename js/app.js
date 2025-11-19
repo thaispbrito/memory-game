@@ -343,6 +343,8 @@ function playLevelUpAudio() {
     levelUpAudio.play();
 }
 
+console.log();
+
 
 /*----------------------------- Event Listeners -----------------------------*/
 boardElement.addEventListener('click', handleClick);
