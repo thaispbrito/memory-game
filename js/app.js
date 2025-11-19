@@ -343,7 +343,6 @@ function playLevelUpAudio() {
     levelUpAudio.play();
 }
 
-console.log();
 
 
 /*----------------------------- Event Listeners -----------------------------*/
