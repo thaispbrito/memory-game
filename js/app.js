@@ -31,7 +31,6 @@ const pairs = ['🌋', '🌋', '🏞️', '🏞️', '⛰️', '⛰️', '🥾',
 
 /*---------------------------- Variables (state) ----------------------------*/
 let boardItems;  
-let numTries;  
 let numPairs;
 let matchPair;  
 let winner;
@@ -58,7 +57,6 @@ function init() {
 
     boardItems = ['', '', '', '', '', '', '', '', '', '', '', ''];  // The emojis will be all hidden from start
     shuffleGame();
-    numTries = 0;
     numPairs = 0;
     matchPair = false;
     winner = false;
@@ -67,7 +65,7 @@ function init() {
     playerChoice2 = null;
     prevPlayerChoice1 = null;
     prevPlayerChoice2 = null;
-    matchedItems = [];
+    matchedItems = [];  // It will be used to store the matched pairs and prevent them to be clicked again
     resetTimer();
     render();
 };
@@ -112,7 +110,7 @@ function updateMessage() {
     } else if(winner) {
         // Update the message congratulating the player for winning the game
         messageElement.textContent = `Congratulations! You just won the game!`
-    } else if (gameOver) {
+    } else {
         // Update the message letting the player know that the game is over
         messageElement.textContent = `Game Over!`
     }
@@ -286,57 +284,62 @@ function resetTimer() {
 }
 
 // Create a variable to store the match audio
-const matchAudio = new Audio('/audio/match.mp3');
+const matchAudio = new Audio('./media/match.mp3');
 
 // Create a function to play the match audio
 function playMatchAudio() {
 
     // Reset the sound if already played
     matchAudio.currentTime = 0;
+    matchAudio.volume = .1;
     matchAudio.play();
 }
 
 // Create a variable to store the mismatch audio
-const mismatchAudio = new Audio('/audio/mismatch.mp3');
+const mismatchAudio = new Audio('./media/mismatch.mp3');
 
 // Create a function to play the mismatch audio
 function playMismatchAudio() {
 
     // Reset the sound if already played
     mismatchAudio.currentTime = 0;
+    mismatchAudio.volume = .1;
     mismatchAudio.play();
 }
 
 // Create a variable to store the winner audio
-const winnerAudio = new Audio('/audio/winner.mp3');
+const winnerAudio = new Audio('./media/winner.mp3');
 
 // Create a function to play the winner audio
 function playWinnerAudio() {
 
     // Reset the sound if already played
     winnerAudio.currentTime = 0;
+    winnerAudio.volume = .1;
     winnerAudio.play();
 }
 
 // Create a variable to store the game over audio
-const gameOverAudio = new Audio('/audio/game_over.mp3');
+const gameOverAudio = new Audio('./media/game_over.mp3');
 
 // Create a function to play the game over audio
 function playGameOverAudio() {
 
     // Reset the sound if already played
     gameOverAudio.currentTime = 0;
+    gameOverAudio.volume = .1;
     gameOverAudio.play();
 }
 
 // Create a variable to store the level up audio
-const levelUpAudio = new Audio('/audio/level_up.mp3');
+const levelUpAudio = new Audio('./media/level_up.mp3');
 
 // Create a function to play the level up audio
 function playLevelUpAudio() {
 
     // Reset the sound if already played
     levelUpAudio.currentTime = 0;
+    levelUpAudio.volume = .1;
     levelUpAudio.play();
 }
 
