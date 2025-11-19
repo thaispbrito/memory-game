@@ -43,6 +43,7 @@ let prevPlayerChoice2;
 let countDown;
 let intervalTime;
 let clickedStart;
+let matchedItems;
 
 /*------------------------ Cached Element References ------------------------*/
 const emojiElements = document.querySelectorAll('.emoji');
@@ -66,6 +67,7 @@ function init() {
     playerChoice2 = null;
     prevPlayerChoice1 = null;
     prevPlayerChoice2 = null;
+    matchedItems = [];
     resetTimer();
     render();
 };
@@ -112,7 +114,7 @@ function updateMessage() {
         messageElement.textContent = `Congratulations! You just won the game!`
     } else if (gameOver) {
         // Update the message letting the player know that the game is over
-        messageElement.textContent = `Gave Over!`
+        messageElement.textContent = `Game Over!`
     }
 };
 
@@ -137,6 +139,11 @@ function handleClick(event) {
     // Set the emoji index
     const emojiIdx = parseInt(event.target.id);
 
+    // Ignore clicks on matched emojis
+    if (matchedItems.includes(emojiIdx)) {
+        return;
+    }
+
     // Make sure the player is not able to click the same emoji twice for the same turn
     if (emojiIdx === playerChoice1 || emojiIdx === playerChoice2) {
         return;
@@ -148,7 +155,6 @@ function handleClick(event) {
         boardItems[prevPlayerChoice2] = '';
         prevPlayerChoice1 = null;
         prevPlayerChoice2 = null;
-        // playMismatchSound();
     }
 
     // Deal with the current choice
@@ -185,8 +191,13 @@ function checkGameState() {
         // There is a match
         matchPair = true;
 
+         // Play the match audio right away
+        playMatchAudio()
+
         // Increase the number of pairs
         numPairs += 1;
+
+        matchedItems.push(playerChoice1, playerChoice2);
 
         // In this case, there's no need to hide the emojis again during the next click,
         // so, reset the variables below
@@ -199,7 +210,7 @@ function checkGameState() {
         // There is no match
         matchPair = false;
 
-        // Play the mismatch right away
+        // Play the mismatch audio right away
         playMismatchAudio();
 
         // If the cards don't match, hide them during next click
@@ -215,9 +226,14 @@ function checkGameState() {
     // Check if the player wins
     if (numPairs === 6) {
         winner = true;
-    } 
+
+        // Play the winner audio right away
+        playWinnerAudio()
+
+    }
 
 };
+
 
 // Create a function to set up timer details
 function timerDetails() {
@@ -270,8 +286,19 @@ function resetTimer() {
     clickedStart = false;
 }
 
+// Create a variable to store the match audio
+const matchAudio = new Audio('/audio/match.mp3');
+
+// Create a function to play the match audio
+function playMatchAudio() {
+
+    // Reset the sound if already played
+    matchAudio.currentTime = 0;
+    matchAudio.play();
+}
+
 // Create a variable to store the mismatch audio
-const mismatchAudio = new Audio('/sound/mismatch_sound.mp3');
+const mismatchAudio = new Audio('/audio/mismatch.mp3');
 
 // Create a function to play the mismatch audio
 function playMismatchAudio() {
@@ -279,6 +306,39 @@ function playMismatchAudio() {
     // Reset the sound if already played
     mismatchAudio.currentTime = 0;
     mismatchAudio.play();
+}
+
+// Create a variable to store the winner audio
+const winnerAudio = new Audio('/audio/winner.mp3');
+
+// Create a function to play the winner audio
+function playWinnerAudio() {
+
+    // Reset the sound if already played
+    winnerAudio.currentTime = 0;
+    winnerAudio.play();
+}
+
+// Create a variable to store the game over audio
+const gameOverAudio = new Audio('/audio/game_over.mp3');
+
+// Create a function to play the game over audio
+function playGameOverAudio() {
+
+    // Reset the sound if already played
+    gameOverAudio.currentTime = 0;
+    gameOverAudio.play();
+}
+
+// Create a variable to store the level up audio
+const levelUpAudio = new Audio('/audio/level_up.mp3');
+
+// Create a function to play the level up audio
+function playLevelUpAudio() {
+
+    // Reset the sound if already played
+    levelUpAudio.currentTime = 0;
+    levelUpAudio.play();
 }
 
 
