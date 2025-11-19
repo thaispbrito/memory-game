@@ -229,9 +229,7 @@ function checkGameState() {
 
         // Play the winner audio right away
         playWinnerAudio()
-
     }
-
 };
 
 
@@ -245,6 +243,8 @@ function timerDetails() {
         gameOver = true;
 
         render();
+
+        playGameOverAudio()
 
         resetTimer();
     }
@@ -269,7 +269,6 @@ function setTimer() {
         // Start the game once the button `Start` has been clicked
         clickedStart = true;
     } 
-
 }
 
 // Reset timer
