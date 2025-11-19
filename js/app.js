@@ -232,6 +232,13 @@ function timerDetails() {
         resetTimer();
     }
     countDown -= 1;
+
+    // If the player wins, freeze the timer 
+    render();
+    if(winner) {
+        clearInterval(intervalTime);  // Stops the timer
+    }
+
 }
 
 // Create a function to set up a countdown for the game
@@ -245,7 +252,7 @@ function setTimer() {
         // Start the game once the button `Start` has been clicked
         clickedStart = true;
     } 
-       
+
 }
 
 // Reset timer
