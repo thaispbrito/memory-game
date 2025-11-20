@@ -262,6 +262,13 @@ function timerDetails() {
 
         playGameOverAudio()
 
+        // Use the same library for the confetti
+        jsConfetti.addConfetti({
+            emojis: ['💀', '😵', '☠️'],
+            emojiSize: 60,
+            confettiNumber: 20
+        })
+
         resetTimer();
     }
     countDown -= 1;
