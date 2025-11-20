@@ -38,8 +38,9 @@ const pairs = [
 const matchAudio = new Audio('./media/match.mp3');
 const mismatchAudio = new Audio('./media/mismatch.mp3');
 const winnerAudio = new Audio('./media/winner.mp3');
+const gameOverAudio = new Audio('./media/game_over.mp3');
 
-const jsConfetti = new JSConfetti(); // how to fix it
+const jsConfetti = new JSConfetti(); 
 
 /*---------------------------- Variables (state) ----------------------------*/
 let boardItems;  
@@ -318,9 +319,6 @@ function playMismatchAudio() {
     mismatchAudio.play();
 }
 
-// Create a variable to store the winner audio
-
-
 // Create a function to play the winner audio
 function playWinnerAudio() {
 
@@ -330,9 +328,6 @@ function playWinnerAudio() {
     winnerAudio.play();
 }
 
-// Create a variable to store the game over audio
-const gameOverAudio = new Audio('./media/game_over.mp3');
-
 // Create a function to play the game over audio
 function playGameOverAudio() {
 
@@ -340,18 +335,6 @@ function playGameOverAudio() {
     gameOverAudio.currentTime = 0;
     gameOverAudio.volume = .1;
     gameOverAudio.play();
-}
-
-// Create a variable to store the level up audio
-const levelUpAudio = new Audio('./media/level_up.mp3');
-
-// Create a function to play the level up audio
-function playLevelUpAudio() {
-
-    // Reset the sound if already played
-    levelUpAudio.currentTime = 0;
-    levelUpAudio.volume = .1;
-    levelUpAudio.play();
 }
 
 /*----------------------------- Event Listeners -----------------------------*/

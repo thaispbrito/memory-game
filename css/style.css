@@ -1,28 +1,105 @@
 body {
-  background-color: gainsboro;
-  /* Use a system font, if none are available use an available sans-sarif */
+  background-color: #A9B88F;
   font-family: system-ui, sans-serif;
-  /* margin-left: 50px; */
-  /*display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  margin: 0;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  align-items: center;      
+  min-height: 100vh;        
+  margin: 0;                
+  text-align: center;       
 }
 
+h1 {
+    color: #3B4429;
+}
+
+h2 {
+    color: #3B4429;
+}
+
+
+/* Adding a glowing effect animation to the game title*/
+.glow-effect {
+    color: #3B4429;
+    text-shadow: 0 0 5px #FFFA70, 0 0 10px #FFD700;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px #FFFA70, 0 0 10px #FFD700;
+    }
+    to {
+        text-shadow: 0 0 20px #FFFA70, 0 0 50px #FFD700;
+    }
+}
+
+
+#message {
+    color: #3B4429;
+    margin: 0;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+#start,
+#reset {
+    background-color: #B7C97A;
+    border: 3px solid #3B4429;
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 15px;
+    margin: 10px;
+} 
+
+#start {
+    color: #006400;
+}
+
+#reset {
+    color: #000064;
+}
+
+.board-timer {
+    position: relative;
+    width: 725px;
+    margin: 0 auto;
+}
 
 .board {
     display: flex;
     flex-wrap: wrap;
-    width: 625px;
+    width: 725px;
+    justify-content: center;
+    text-align: center;
+    gap: 15px;
 }
 
+.timer-display {
+    position: absolute;
+    top:0;
+    right: -120px;
+    font-size: 24px;
+    color:#006400;
+    width: 100px;
+    text-align: center;
+}
 
 .emoji {
-    width: 20%;
+    width: 16%;
     aspect-ratio: 1/1;
-    border: 3px solid black;
+    border: 4px solid #3B4429;
     font-size: 64px;
-    text-align: center;
-    /*background-color: #add8e6;*/
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
+
+
