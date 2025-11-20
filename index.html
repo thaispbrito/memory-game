@@ -10,10 +10,23 @@
     <title>Concentration</title>
 </head>
 <body>
+    <div class="background-emoji" style="top: 45px; right: 50px;">🌋</div>
     <h1 class="glow-effect"> 🌲 Wilderness Concentration Game 🌲</h1>
-    <h2> You have 60 seconds to find all 10 matching pairs<br>by clicking on the squares below.</h2>
     <h3 id="message">message</h3>  
     <div class="buttons">
+        <button id="instructions">instructions</button>
+        <div id="instructions-modal" class="modal">
+            <div class="modal-content">
+                <span id="exit">&times</span>
+                <h2>Game Rules</h2>
+                <p>Follow these steps to play the game:</p>
+                <ul>
+                    <li>Click the <strong>Start</strong> button to begin. The 60-second timer will start immediately.</li>
+                    <li>Find all 10 matching pairs by clicking on the squares before time runs out.</li>
+                    <li> If you want to restart the game at any time, press the <strong>Reset</strong> button.</li>
+                </ul>
+            </div>
+        </div>
         <button id="start">Start</button>
         <button id="reset">Reset</button>
     </div>
@@ -41,7 +54,5 @@
             <div class="emoji" id="18"></div>
             <div class="emoji" id="19"></div>
         </section> 
-    </div> 
-</div>
 </body>
 </html>

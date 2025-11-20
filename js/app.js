@@ -64,6 +64,9 @@ const boardElement = document.querySelector('.board');
 const resetBtnElement = document.querySelector('#reset');
 const startElement = document.querySelector('#start');
 const timerElement = document.querySelector('.timer-display')
+const instElement = document.querySelector('#instructions');
+const modalElement = document.querySelector('#instructions-modal');
+const exitElement = document.querySelector('#exit');
 
 /*-------------------------------- Functions --------------------------------*/
 function init() {
@@ -348,3 +351,19 @@ function playGameOverAudio() {
 boardElement.addEventListener('click', handleClick);
 resetBtnElement.addEventListener('click', init);
 startElement.addEventListener('click', setTimer);
+
+
+// For a popup window to show the game instructions to the player
+instElement.addEventListener('click', () => {
+    modalElement.style.display = 'block';
+});
+
+exitElement.addEventListener('click', () => {
+    modalElement.style.display = 'none';
+});
+
+window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+    modalElement.style.display = 'none';
+  }
+});
