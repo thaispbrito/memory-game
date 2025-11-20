@@ -27,7 +27,19 @@
 
 
 /*-------------------------------- Constants --------------------------------*/
-const pairs = ['🌋', '🌋', '🏞️', '🏞️', '⛰️', '⛰️', '🥾', '🥾', '🍂', '🍂', '🐻', '🐻'];
+const pairs = [
+    '🌋', '🌋', '🏞️', '🏞️', 
+    '⛰️', '⛰️', '🥾', '🥾', 
+    '🍂', '🍂', '🐻', '🐻',
+    '🌲', '🌲', '⛺', '⛺',
+    '🧭', '🧭', '🚣‍♀️', '🚣‍♀️'
+];
+
+const matchAudio = new Audio('./media/match.mp3');
+const mismatchAudio = new Audio('./media/mismatch.mp3');
+const winnerAudio = new Audio('./media/winner.mp3');
+
+const jsConfetti = new JSConfetti(); // how to fix it
 
 /*---------------------------- Variables (state) ----------------------------*/
 let boardItems;  
@@ -55,7 +67,9 @@ const timerElement = document.querySelector('.timer-display')
 /*-------------------------------- Functions --------------------------------*/
 function init() {
 
-    boardItems = ['', '', '', '', '', '', '', '', '', '', '', ''];  // The emojis will be all hidden from start
+    // The emojis will be all hidden from start
+    boardItems = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];  
+    
     shuffleGame();
     numPairs = 0;
     matchPair = false;
@@ -222,11 +236,14 @@ function checkGameState() {
 
 
     // Check if the player wins
-    if (numPairs === 6) {
+    if (numPairs === pairs.length/2) {
         winner = true;
 
         // Play the winner audio right away
         playWinnerAudio()
+
+        // Release confetti
+        jsConfetti.addConfetti()
     }
 };
 
@@ -283,9 +300,6 @@ function resetTimer() {
     clickedStart = false;
 }
 
-// Create a variable to store the match audio
-const matchAudio = new Audio('./media/match.mp3');
-
 // Create a function to play the match audio
 function playMatchAudio() {
 
@@ -294,9 +308,6 @@ function playMatchAudio() {
     matchAudio.volume = .1;
     matchAudio.play();
 }
-
-// Create a variable to store the mismatch audio
-const mismatchAudio = new Audio('./media/mismatch.mp3');
 
 // Create a function to play the mismatch audio
 function playMismatchAudio() {
@@ -308,7 +319,7 @@ function playMismatchAudio() {
 }
 
 // Create a variable to store the winner audio
-const winnerAudio = new Audio('./media/winner.mp3');
+
 
 // Create a function to play the winner audio
 function playWinnerAudio() {
@@ -342,7 +353,6 @@ function playLevelUpAudio() {
     levelUpAudio.volume = .1;
     levelUpAudio.play();
 }
-
 
 /*----------------------------- Event Listeners -----------------------------*/
 boardElement.addEventListener('click', handleClick);
