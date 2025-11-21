@@ -2,7 +2,7 @@
 ![Game Screenshot](./images/game_screenshot.png)
 
 
-## 1. Game Description
+## 1. Game Description & How to Play
 
 The Wilderness Concentration Game is a nature-themed memory game. Like the traditional version, all the cards begin face-down, and the goal is to uncover and match all pairs. The player can only select two cards per turn. In this version, a total of 10 pairs of emojis were included.
 
