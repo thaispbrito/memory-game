@@ -10,7 +10,7 @@ Once the player clicks **Start**, the 60-second countdown begins. From there, it
 
 To make the game more exciting, some sound effects are included: a chime for correct matches, a short alert for mismatches, and separate sounds for both winning and game over. If all pairs are discovered in time, the clock freezes to show the finishing time, and a celebratory confetti animation appears. If not, a skull-themed confetti effect marks the loss instead.
 
-> **Why this theme** I chose this theme because I love nature, so each card features an emoji inspired by the outdoors.
+> **Why this theme?** I chose this theme because I love nature, so each card features an emoji inspired by the outdoors.
 
 > **Why this game?** Because it reminds me of playing memory games as a kid, and I liked the idea of giving it a personal touch by choosing all the nature-themed pairs.
 
