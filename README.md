@@ -21,9 +21,7 @@ To make the game more exciting, some sound effects are included: a chime for cor
 
 > **Note:** The top of `app.js` contains the planning materials in pseudocode.
 
-## 3. Attributions
-
-*External resources:* 
+## 3. External resources
 
 * The [js-confetti](https://www.npmjs.com/package/js-confetti) library was used for this game.
 * The audio for the game sound effects were downloaded from [pixabay](https://pixabay.com/sound-effects/).
