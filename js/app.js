@@ -265,9 +265,10 @@ function timerDetails() {
 
         playGameOverAudio()
 
-        // Use the same library for the confetti
+        // Use the same library for the confetti,
+        // but with skulls when the game is over
         jsConfetti.addConfetti({
-            emojis: ['💀', '😵', '☠️'],
+            emojis: ['💀', '☠️'],
             emojiSize: 60,
             confettiNumber: 20
         })
@@ -360,10 +361,4 @@ instElement.addEventListener('click', () => {
 
 exitElement.addEventListener('click', () => {
     modalElement.style.display = 'none';
-});
-
-window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-    modalElement.style.display = 'none';
-  }
 });
