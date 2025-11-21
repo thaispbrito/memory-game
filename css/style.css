@@ -11,160 +11,153 @@ body {
   font-family: 'Elms Sans', sans-serif;
   display: flex;
   flex-direction: column;
-  justify-content: center;  
-  align-items: center;      
-  min-height: 100vh;        
-  margin: 0;                
+  justify-content: center;
   text-align: center;
+  min-height: 100vh;        
+  margin: 0;                 
 }
 
 h1 {
-    text-align: center;
-    font-family: 'Chewy', cursive; 
-    font-size: 3rem; /* adjust size as needed */
-    color: #3B4429; 
+  /* text-align: center; */
+  font-family: 'Chewy', cursive; 
+  font-size: 3rem; 
+  color: #3B4429; 
 }
 
 /* Adding a glowing effect animation to the game title*/
 .glow-effect {
-    color: #3B4429;
-    text-shadow: 0 0 5px #FFFA70, 0 0 10px #FFD700;
-    animation: glow 1s ease-in-out infinite alternate;
+  color: #3B4429;
+  text-shadow: 0 0 5px #FFFA70, 0 0 10px #FFD700;
+  animation: glow 1s ease-in-out infinite alternate;
 }
 @keyframes glow {
-    from {
-        text-shadow: 0 0 5px #FFFA70, 0 0 10px #FFD700;
-    }
-    to {
-        text-shadow: 0 0 20px #FFFA70, 0 0 50px #FFD700;
-    }
+  from {
+    text-shadow: 0 0 5px #FFFA70, 0 0 10px #FFD700;
+  }
+  to {
+    text-shadow: 0 0 20px #FFFA70, 0 0 50px #FFD700;
+  }
 }
 
 h2 {
-    color: #3B4429;
-    font-family: 'Chewy', cursive;
-    font-size: 30px; 
+  color: #3B4429;
+  font-family: 'Chewy', cursive;
+  font-size: 30px; 
 }
 
 #message {
-    color: #3B4429;
-    margin: 5px;
-    font-size: 25px;
-    font-weight: 800;
+  color: #3B4429;
+  margin: 5px;
+  font-size: 25px;
+  font-weight: 800;
 }
 
 .buttons {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
 }
 
 #start,
 #reset,
 #instructions {
-    background-color: #B7C97A;
-    border: 3px solid  #8B3E2F;
-    font-family: 'Elms Sans', sans-serif;
-    font-weight: 800;
-    width: 150px;
-    height: 50px;
-    font-size: 20px;
-    border-radius: 15px;
-    margin: 10px;
-    color: #005200;
+  font-family: 'Elms Sans', sans-serif;
+  background-color: #B7C97A;
+  border: 3px solid  #8B3E2F;
+  font-weight: 800;
+  width: 150px;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 15px;
+  margin: 10px;
+  color: #005200;
 } 
 
 .board-timer {
-    position: relative;
-    width: 90%;
-    max-width: 725px;
-    margin: 0 auto;
+  position: relative;
+  width: 90%;
+  max-width: 725px;
+  margin: 0 auto;
 }
 
 .board {
-    display: flex;
-    flex-wrap: wrap;
-    width: 725px;
-    justify-content: center;
-    text-align: center;
-    gap: 15px;
-    width: 100%;
-    max-width: 725px;
-    margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  gap: 15px;
+  width: 100%;
+  max-width: 725px;
+  margin: 0 auto;
 }
 
 .timer-display {
-    position: absolute;
-    /*top:0;*/
-    right: -90px;
-    font-size: 25px;
-    color:#006400;
-    width: 100px;
-    text-align: center;
-    font-weight: 700;
+  position: absolute;
+  right: -90px;
+  font-size: 25px;
+  color:#006400;
+  /* width: 100px; */
+  text-align: center;
+  font-weight: 700;
 }
 
 .emoji {
-    width: 16%;
-    aspect-ratio: 1/1;
-    border: 4px solid #8B3E2F;
-    background-color: #6B8E23;
-    font-size: 64px;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
+  width: 16%;
+  aspect-ratio: 1/1;
+  border: 4px solid #8B3E2F;
+  background-color: #6B8E23;
+  font-size: 64px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal {
-    display: none; 
-    position: fixed;
-    z-index: 1000; 
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.5); 
+  display: none; 
+  position: fixed;
+  z-index: 1000; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5); 
 }
 
 .modal-content {
-    background-color: #F0F0E0; 
-    color: #2C5F2D; 
-    margin: 10% auto;
-    padding: 25px;
-    width: 90%;
-    max-width: 700px;
-    border-radius: 12px;
-    border: 4px solid yellow;
-    text-align: center;
+  background-color: #F0F0E0; 
+  color: #2C5F2D; 
+  margin: 10% auto;
+  padding: 25px;
+  width: 90%;
+  max-width: 700px;
+  border-radius: 15px;
+  border: 4px solid yellow;
+  text-align: center;
 }
 
-
 .modal-content p {
-    font-weight: 800;
+  font-weight: 800;
 }
 
 .modal-content ul {
-    text-align: left;      
-    padding-left: 20px;     
-    margin-top: 15px;
-    color: #2C5F2D;         
-    font-size: 16px;
-    line-height: 1.5;
+  text-align: left;
+  padding-left: 20px;     
+  color: #2C5F2D;
+  font-size: 16px;
+  line-height: 1.8;
 }
 
 #exit {
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #2C5F2D;
+  float: right;
+  font-size: 30px;
+  font-weight: 800;
+  color: #2C5F2D;
+  cursor: default;
 }
-
 
 .image-pattern {
   width: 161px;               
@@ -173,18 +166,14 @@ h2 {
   background-repeat: repeat-y;
   background-size: 100% auto;
   position: absolute;
-  pointer-events: none;
-
 }
 
 .image-pattern.left {
   left: 8%;
-
 }
 
 .image-pattern.right {
   right: 8%
-
 }
 
 /* Media query for small screens */
@@ -224,7 +213,6 @@ h2 {
 
   .emoji {
     font-size: 40px;
-
   }
 }
 
