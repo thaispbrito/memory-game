@@ -1,5 +1,5 @@
 # Wilderness Concentration Game
-![Game Screenshot](image.png)
+![Game Screenshot](./images/game_screenshot.png)
 
 
 ## 1. Game Description
