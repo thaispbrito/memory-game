@@ -6,7 +6,7 @@
 
 The Wilderness Concentration Game is a nature-themed memory game. Like the traditional version, all the cards begin face-down, and the goal is to uncover and match all 10 pairs. 
 
-Once the player clicks **Start**, the 60-second countdown begins. From there, it’s a race against the clock to find all the matching pairs before time runs out. The **Instructions** button provides a quick overview of how to play, and the **Reset** button lets players restart the game at any time. After the timer has started, pressing **Start** again won’t do anything, since resetting is required before beginning a new round. 
+Once the player clicks **Start**, the 60-second countdown begins. From there, it’s a race against the clock to find all the matching pairs before time runs out. The **Instructions** button provides a quick overview of how to play, and the **Reset** button lets players restart the game at any time. After the timer has started, clicking **Start** again won’t do anything, since resetting is required before beginning a new round. 
 
 To make the game more exciting, some sound effects are included: a chime for correct matches, a short alert for mismatches, and separate sounds for both winning and game over. If all pairs are discovered in time, the clock freezes to show the finishing time, and a celebratory confetti animation appears. If not, a skull-themed confetti effect marks the loss instead.
 
