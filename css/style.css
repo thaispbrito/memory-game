@@ -18,9 +18,8 @@ body {
 }
 
 h1 {
-  /* text-align: center; */
   font-family: 'Chewy', cursive; 
-  font-size: 3rem; 
+  font-size: 50px; 
   color: #3B4429; 
 }
 
@@ -95,10 +94,9 @@ h2 {
 
 .timer-display {
   position: absolute;
-  right: -90px;
+  right: -80px;
   font-size: 25px;
-  color:#006400;
-  /* width: 100px; */
+  color: #3B4429;
   text-align: center;
   font-weight: 700;
 }
@@ -141,13 +139,14 @@ h2 {
 
 .modal-content p {
   font-weight: 800;
+  font-size: 18px;
 }
 
 .modal-content ul {
   text-align: left;
   padding-left: 20px;     
   color: #2C5F2D;
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.8;
 }
 
@@ -173,7 +172,7 @@ h2 {
 }
 
 .image-pattern.right {
-  right: 8%
+  right: 8%;
 }
 
 /* Media query for small screens */
@@ -188,7 +187,6 @@ h2 {
     font-size: 16px;
   }
 
-  /* Make buttons smaller */
   #start,
   #reset,
   #instructions {
