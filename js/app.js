@@ -362,3 +362,6 @@ instElement.addEventListener('click', () => {
 exitElement.addEventListener('click', () => {
     modalElement.style.display = 'none';
 });
+
+let test = new Audio('./media/match.mp3');
+test.play().catch(err => console.log(err));
